@@ -8,13 +8,10 @@
     
     <!-- Bootstrap CSS Link -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Fontawesome Link -->
-    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 </head>
-<body class="bg-ligth">
+<body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-indigo">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <div class="container">
     <a class="navbar-brand" href="#">My Application</a>
 
@@ -22,17 +19,17 @@
     <ul class="navbar-nav">
         @if(auth()->check())
         <li class="nav-item">
-            <p class="nav-link text-xl">Welcome: <b>{{auth()->user()->name}}</b></p>
+            <p class="nav-link text-white">Welcome: <b>{{auth()->user()->name}}</b></p>
         </li>
         <li class="nav-item">
-            <a href="{{ route('login.destroy')}}" class="nav-link font-bold  py-2 px-4 rounded-md bg-red-500 hover:bg-red-600">Log Out</a>
+            <a href="{{ route('login.destroy')}}" class="nav-link font-bold  py-2 px-4 rounded-md bg-danger">Log Out</a>
         </li>
         @else
         <li class="nav-item">
-            <a href="{{ route('login.index')}}" class="nav-link font-semibold hover-bg-indigo-700 py-3 px-4 rounded-md">Log In</a>
+            <a href="{{ route('login.index')}}" class="nav-link font-semibold text-white">Log In</a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('register.index')}}" class="nav-link font-semibold border-2 border-white py-2 px-4 rounded-md hover-bg-white hover-text-indigo-700">Register</a>
+            <a href="{{ route('register.index')}}" class="nav-link font-semibold border-2 border-white py-2 px-4 rounded-md text-white">Register</a>
         </li>
         @endif
     </ul>

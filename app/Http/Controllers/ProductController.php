@@ -44,7 +44,7 @@ class ProductController extends Controller
         ]);
         
         Product::create($request->all());
-        return redirect()->route('products.home')->with('success','Nueva tarea creada exitosamente!!');
+        return redirect()->route('home')->with('success','Nueva tarea creada exitosamente!!');
     }
 
     /**
@@ -82,7 +82,7 @@ class ProductController extends Controller
             'quantitat' => 'required',
         ]);
         $product->update($request->all());
-        return redirect()->route('products.home')->with('success','Tarea actualizada exitosamente!!');
+        return redirect()->route('home')->with('success','Tarea actualizada exitosamente!!');
     }
 
     /**
@@ -92,6 +92,6 @@ class ProductController extends Controller
     {
         //
         $product->delete();
-        return redirect()->route('products.home')->with('success','Tarea eliminada exitosamente!!');
+        return redirect()->route('home')->with('success','Tarea eliminada exitosamente!!');
     }
 }

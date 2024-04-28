@@ -7,7 +7,7 @@
             <h2>Crear Producto</h2>
         </div>
         <div>
-            <a href="{{ route('products.home') }}" class="btn btn-primary">Volver</a>
+            <a href="{{ route('home') }}" class="btn btn-primary">Volver</a>
         </div>
     </div>
 

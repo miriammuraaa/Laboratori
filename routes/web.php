@@ -14,7 +14,7 @@ Route::get('/', function () {
     // return view('home');
     $products = Product::latest()->paginate(3);
         return view('home',['products' => $products]);
-});
+})->name('home');
 
 Route::get('/register', [RegisterController::class, 'create'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
