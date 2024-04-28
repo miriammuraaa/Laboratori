@@ -1,13 +1,10 @@
-@extends ('layouts.app')
-
-@section('title', 'Home')
+@extends('layouts.app')
 
 @section('content')
-
 <div class="row">
     <div class="col-12">
         <div>
-            <h2 class="text-black">CRUD de Productes</h2>
+            <h2 class="text-white">CRUD de Productes</h2>
         </div>
         <div>
             <a href="{{ route('products.create') }}" class="btn btn-primary">Crear Producte</a>
@@ -69,5 +66,4 @@
         {{$products->links()}}
     </div>
 </div>
-
 @endsection

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->float('capacitat'); // Campo Capacitat del pot (Float)
             $table->date('caducitat'); // Campo Caducitat (Fecha)
             $table->string('armari'); // Campo Armari (Alfanumérico)
+            $table->integer('quantitat');
             $table->timestamps();
         }); 
     }

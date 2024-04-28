@@ -10,9 +10,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function home()
     {
         //
+        $products = Product::latest()->paginate(3);
+        return view('home',['products' => $products]);
     }
 
     /**
@@ -21,6 +23,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('create');
     }
 
     /**
@@ -29,6 +32,19 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'cas' => 'required',
+            'concentracio' => 'required',
+            'estat' => 'required',
+            'tipus_concentracio' => 'required',
+            'capacitat' => 'required',
+            'caducitat' => 'required',
+            'armari' => 'required',
+            'quantitat' => 'required',
+        ]);
+        
+        Product::create($request->all());
+        return redirect()->route('products.home')->with('success','Nueva tarea creada exitosamente!!');
     }
 
     /**
@@ -45,6 +61,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        return view('edit',['product'=>$product]);
+
     }
 
     /**
@@ -53,6 +71,18 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        $request->validate([
+            'cas' => 'required',
+            'concentracio' => 'required',
+            'estat' => 'required',
+            'tipus_concentracio' => 'required',
+            'capacitat' => 'required',
+            'caducitat' => 'required',
+            'armari' => 'required',
+            'quantitat' => 'required',
+        ]);
+        $product->update($request->all());
+        return redirect()->route('products.home')->with('success','Tarea actualizada exitosamente!!');
     }
 
     /**
@@ -61,5 +91,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+        $product->delete();
+        return redirect()->route('products.home')->with('success','Tarea eliminada exitosamente!!');
     }
 }
