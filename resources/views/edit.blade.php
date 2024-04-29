@@ -11,7 +11,7 @@
                     <h2 class="text-center">Editar producte</h2>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('home') }}" class="btn btn-primary mb-3">Enrere</a>
+                    <a href="{{ route('home') }}" class="btn btn-outline-primary mb-3">Enrere</a>
 
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -95,7 +95,7 @@
                                     <input type="text" name="quantitat" class="form-control" placeholder="Quantitat" value="{{ $product->quantitat }}">
                                 </div>
                             </div>
-                            <div class="col-md-12 text-center">
+                            <div class="col-md-12 text-center mt-4">
                                 <button type="submit" class="btn btn-primary">Actualitzar</button>
                             </div>
                         </div>

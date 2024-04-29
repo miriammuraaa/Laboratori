@@ -13,14 +13,13 @@
                 </div>
                 
                 <div class="card-body">
-                <a href="{{ route('home') }}" class="btn btn-primary mb-3">Enrere</a>
+                <a href="{{ route('home') }}" class="btn btn-outline-primary mb-3">Enrere</a>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>CAS</th>
                                     <th>Nom</th>
-                                    <th>FDS</th>
                                     <th>Concentració</th>
                                     <th>Tipus de Concentració</th>
                                     <th>Estat</th>
@@ -34,7 +33,6 @@
                                 <tr>
                                     <td>{{ $product->cas }}</td>
                                     <td>{{$product->nom}}</td>
-                                    <td>{{ $product->fds }}</td>
                                     <td>{{ $product->concentracio }}</td>
                                     <td>{{ $product->tipus_concentracio }}</td>
                                     <td>{{ $product->estat }}</td>
@@ -63,8 +61,9 @@
                                         <option value="Altres">Altres</option>
                                     </select>
                             </div>
-                            
-                        <button type="submit" class="btn btn-primary">Retirar</button>
+                            <div class="col-md-12 text-center mt-4">
+                                <button type="submit" class="btn btn-primary mt-4">Retirar</button>
+                            </div>
                         @if(Session::has('error'))
                         <div class="alert alert-danger mt-3">
                             <strong>{{ Session::get('error') }}</strong>

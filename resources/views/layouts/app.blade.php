@@ -39,7 +39,7 @@
             <ul class="navbar-nav align-items-center"> <!-- Añadir clase 'align-items-center' -->
             <li class="nav-item">
                     <form action="{{ url('/search') }}" method="GET" class="form-inline">
-                        <input class="form-control" type="search" name="query" placeholder="Nom producte..." aria-label="Search">
+                        <input class="form-control" type="search" name="query" placeholder="Nom producte | CAS..." aria-label="Search">
                         
                     </form>
                 </li>

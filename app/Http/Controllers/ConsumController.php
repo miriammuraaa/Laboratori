@@ -34,7 +34,7 @@ public function retirarProducto(Request $request, $id)
 }
 public function log(){
      // Obtener todos los registros de consumos con los nombres de los usuarios relacionados
-    $consums = Consum::with('user', 'product')->get();
+    $consums = Consum::with('user', 'product')->orderBy('data','desc')->paginate(6);
 
     // Pasar los consumos a la vista 'log'
     return view('log', ['consums' => $consums]);

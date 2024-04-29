@@ -20,7 +20,7 @@ class ProductController extends Controller
         $search_text = $_GET['query'];
         $products=Product::where(function($query) use ($search_text){
             $query->where('nom','like',"%$search_text%")
-            ->orWhere('fds','like',"%$search_text%");
+            ->orWhere('cas','like',"%$search_text%");
         })
         ->get();
         return view('search',compact('products'));

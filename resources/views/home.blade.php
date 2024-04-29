@@ -32,7 +32,6 @@
                 <tr>
                 <th>CAS</th>
                 <th>Nom</th>
-                <th>FDS</th>
                 <th>Concentració</th>
                 <th>Tipus de Concentració</th>
                 <th>Estat</th>
@@ -47,10 +46,10 @@
             </thead>
             <tbody>
                 @foreach($products as $product)
+                @if($product->quantitat > 0)
                 <tr>
                     <td class="fw-bold">{{ $product->cas }}</td>
                     <td>{{$product->nom}}</td>
-                    <td>{{$product->fds}}</td>
                     <td>{{ $product->concentracio }}</td>
                     <td>{{ $product->tipus_concentracio }}</td>
                     <td>{{ $product->estat }}</td>
@@ -60,21 +59,22 @@
                     <td>{{ $product->quantitat }}</td>
                     @auth
                     <td>
-                    <a href="{{ route('consums.index', $product->id) }}" class="btn btn-success">Retirar</a>
+                    <a href="{{ route('consums.index', $product->id) }}" class="btn btn-outline-dark mt-2">Retirar</a>
 
                         @if (auth()->user()->admin) {{-- Verifica si el usuario logeado es admin --}}
                     
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Editar</a>
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-outline-dark mt-2">Editar</a>
 
                         <form action="{{route('products.destroy',$product)}}" method="post" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-outline-danger mt-2">Eliminar</button>
                         </form>
                     @endif
                     @endauth
                     </td>
                 </tr>
+                @endif
                 @endforeach
             </tbody>
         </table>

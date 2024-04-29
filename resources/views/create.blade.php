@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,7 +10,7 @@
                     <h2 class="text-center">Crear producte</h2>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('home') }}" class="btn btn-primary mb-3">Enrere</a>
+                    <a href="{{ route('home') }}" class="btn btn-outline-primary mb-3">Enrere</a>
 
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -92,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">Crear</button>
+                                <button type="submit" class="btn btn-primary mt-4">Crear</button>
                             </div>
                         </div>
                     </form>
@@ -101,4 +102,5 @@
         </div>
     </div>
 </div>
+
 @endsection

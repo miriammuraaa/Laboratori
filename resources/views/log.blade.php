@@ -13,7 +13,7 @@
                 </div>
                 
                 <div class="card-body">
-                <a href="{{ route('home') }}" class="btn btn-primary mb-3">Enrere</a>
+                <a href="{{ route('home') }}" class="btn btn-outline-primary mb-3">Enrere</a>
                     <div class="table-responsive">
                     <table class="table table-bordered table-striped text-center">
                     <thead class="thead-dark">
@@ -45,5 +45,9 @@
             </div>
         </div>
     </div>
+    <div class="mt-4">
+        {{ $consums->links() }}
+    </div>
 </div>
+
 @endsection
