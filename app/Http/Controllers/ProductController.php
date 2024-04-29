@@ -16,6 +16,15 @@ class ProductController extends Controller
         $products = Product::latest()->paginate(3);
         return view('home',['products' => $products]);
     }
+    public function search(){
+        $search_text = $_GET['query'];
+        $products=Product::where(function($query) use ($search_text){
+            $query->where('nom','like',"%$search_text%")
+            ->orWhere('fds','like',"%$search_text%");
+        })
+        ->get();
+        return view('search',compact('products'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -34,6 +43,8 @@ class ProductController extends Controller
         //
         $request->validate([
             'cas' => 'required',
+            'nom' => 'required',
+            'fds' => 'required',
             'concentracio' => 'required',
             'estat' => 'required',
             'tipus_concentracio' => 'required',
@@ -44,7 +55,7 @@ class ProductController extends Controller
         ]);
         
         Product::create($request->all());
-        return redirect()->route('home')->with('success','Nueva tarea creada exitosamente!!');
+        return redirect()->route('home')->with('success','Nou producte creat amb èxit!!');
     }
 
     /**
@@ -73,6 +84,8 @@ class ProductController extends Controller
         //
         $request->validate([
             'cas' => 'required',
+            'nom' => 'required',
+            'fds' => 'required',
             'concentracio' => 'required',
             'estat' => 'required',
             'tipus_concentracio' => 'required',
@@ -82,7 +95,7 @@ class ProductController extends Controller
             'quantitat' => 'required',
         ]);
         $product->update($request->all());
-        return redirect()->route('home')->with('success','Tarea actualizada exitosamente!!');
+        return redirect()->route('home')->with('success','Producte actualitzat amb èxit!!');
     }
 
     /**
@@ -92,6 +105,6 @@ class ProductController extends Controller
     {
         //
         $product->delete();
-        return redirect()->route('home')->with('success','Tarea eliminada exitosamente!!');
+        return redirect()->route('home')->with('success','Producte eliminat amb èxit!!');
     }
 }

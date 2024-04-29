@@ -1,19 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">Editar Tarea</h2>
+                    <h2 class="text-center">Editar producte</h2>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('home') }}" class="btn btn-primary mb-3">Volver</a>
+                    <a href="{{ route('home') }}" class="btn btn-primary mb-3">Enrere</a>
 
                     @if ($errors->any())
                     <div class="alert alert-danger">
-                        <strong>¡Ups!</strong> Algo salió mal:<br><br>
+                        <strong>¡Ups!</strong> Alguna cosa ha sortit malament: <br><br>
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -46,7 +48,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <strong>Concentración:</strong>
+                                    <strong>Concentració:</strong>
                                     <input type="text" name="concentracio" class="form-control" placeholder="Concentración" value="{{ $product->concentracio }}">
                                 </div>
                             </div>
@@ -55,14 +57,14 @@
                                 <div class="form-group">
                                     <strong>Estat:</strong>
                                     <select name="estat" class="form-control">
-                                        <option value="solid" {{ $product->estat == 'solid' ? 'selected' : '' }}>Sólido</option>
-                                        <option value="liquid" {{ $product->estat == 'liquid' ? 'selected' : '' }}>Líquido</option>
+                                        <option value="solid" {{ $product->estat == 'sòlid' ? 'selected' : '' }}>Sólido</option>
+                                        <option value="liquid" {{ $product->estat == 'líquid' ? 'selected' : '' }}>Líquido</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <strong>Tipo de Concentración:</strong>
+                                    <strong>Tipus de concentració:</strong>
                                     <select name="tipus_concentracio" class="form-control">
                                         <option value="%" {{ $product->tipus_concentracio == '%' ? 'selected' : '' }}>%</option>
                                         <option value="mols" {{ $product->tipus_concentracio == 'mols' ? 'selected' : '' }}>mols</option>
@@ -71,13 +73,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <strong>Capacidad:</strong>
+                                    <strong>Capacitat:</strong>
                                     <input type="text" name="capacitat" class="form-control" placeholder="Capacidad" value="{{ $product->capacitat }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <strong>Caducidad:</strong>
+                                    <strong>Caducitat:</strong>
                                     <input type="date" name="caducitat" class="form-control" value="{{ $product->caducitat }}">
                                 </div>
                             </div>
@@ -94,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                                <button type="submit" class="btn btn-primary">Actualitzar</button>
                             </div>
                         </div>
                     </form>

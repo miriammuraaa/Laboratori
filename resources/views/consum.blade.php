@@ -6,30 +6,35 @@
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">Información del Producto</h2>
+                    <h2 class="text-center">Informació del Producte</h2>
                 </div>
                 
                 <div class="card-body">
+                <a href="{{ route('home') }}" class="btn btn-primary mb-3">Enrere</a>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>CAS</th>
-                                    <th>Concentración</th>
-                                    <th>Tipo de Concentración</th>
+                                    <th>Nom</th>
+                                    <th>FDS</th>
+                                    <th>Concentració</th>
+                                    <th>Tipus de Concentració</th>
                                     <th>Estat</th>
-                                    <th>Capacidad</th>
-                                    <th>Caducidad</th>
-                                    <th>Armario</th>
+                                    <th>Capacitat</th>
+                                    <th>Caducitat</th>
+                                    <th>Armari</th>
                                     <th>Quantitat</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{ $product->cas }}</td>
+                                    <td>{{$product->nom}}</td>
+                                    <td>{{ $product->fds }}</td>
                                     <td>{{ $product->concentracio }}</td>
                                     <td>{{ $product->tipus_concentracio }}</td>
                                     <td>{{ $product->estat }}</td>
@@ -47,9 +52,18 @@
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <div class="form-group">
-                            <label for="quantitat">Cantidad a retirar:</label>
-                            <input type="number" class="form-control" id="quantitat" name="quantitat" placeholder="Ingrese la cantidad">
+                            <label for="quantitat">Quantitat que vols retirar:</label>
+                            <input type="text" class="form-control" id="quantitat" name="quantitat" placeholder="ex: 10.2">
                         </div>
+                        <div class="form-group">
+                                    Motiu:
+                                    <select name="motiu" class="form-control">
+                                        <option value="Consum">Consum</option>
+                                        <option value="Regularitzacio">Regularització</option>
+                                        <option value="Altres">Altres</option>
+                                    </select>
+                            </div>
+                            
                         <button type="submit" class="btn btn-primary">Retirar</button>
                         @if(Session::has('error'))
                         <div class="alert alert-danger mt-3">
