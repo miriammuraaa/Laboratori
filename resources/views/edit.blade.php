@@ -34,10 +34,23 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <strong>Nom:</strong>
+                                    <input type="text" name="nom" class="form-control" placeholder="Nom" value="{{ $product->nom }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <strong>FDS:</strong>
+                                    <input type="text" name="fds" class="form-control" placeholder="FDS" value="{{ $product->fds }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <strong>Concentración:</strong>
                                     <input type="text" name="concentracio" class="form-control" placeholder="Concentración" value="{{ $product->concentracio }}">
                                 </div>
                             </div>
+                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <strong>Estat:</strong>

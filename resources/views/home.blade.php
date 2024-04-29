@@ -10,11 +10,14 @@
             <h2>Productes Laboratori</h2>
         </div>
         @auth
-            @if (auth()->user()->admin) {{-- Verifica si el usuario logeado es admin --}}
-            <div>
-                <a href="{{ route('products.create') }}" class="btn btn-primary">Afegir Producte</a>
-            </div>
-            @endif
+        @if (auth()->user()->admin) {{-- Verifica si el usuario logeado es admin --}}
+        <div class="col-md-6 text-md-end mt-md-0 mt-3 d-block d-md-none">
+            <a href="{{ route('products.create') }}" class="btn btn-primary">Afegir Producte</a>
+        </div>
+        <div class="d-none d-md-block mt-3">
+            <a href="{{ route('products.create') }}" class="btn btn-primary">Afegir Producte</a>
+        </div>
+        @endif
         @endauth
     </div>
     @if(Session::has('success'))
@@ -22,11 +25,14 @@
         <strong>{{ Session::get('success') }}</strong>
     </div>
     @endif
+
     <div class="table-responsive">
         <table class="table table-bordered table-striped text-center">
             <thead class="thead-dark">
                 <tr>
                 <th>CAS</th>
+                <th>Nom</th>
+                <th>FDS</th>
                 <th>Concentració</th>
                 <th>Tipus de Concentració</th>
                 <th>Estat</th>
@@ -43,6 +49,8 @@
                 @foreach($products as $product)
                 <tr>
                     <td class="fw-bold">{{ $product->cas }}</td>
+                    <td>{{$product->nom}}</td>
+                    <td>{{$product->fds}}</td>
                     <td>{{ $product->concentracio }}</td>
                     <td>{{ $product->tipus_concentracio }}</td>
                     <td>{{ $product->estat }}</td>
@@ -52,7 +60,7 @@
                     <td>{{ $product->quantitat }}</td>
                     @auth
                     <td>
-                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success">Retirar</a>
+                    <a href="{{ route('consums.index', $product->id) }}" class="btn btn-success">Retirar</a>
 
                         @if (auth()->user()->admin) {{-- Verifica si el usuario logeado es admin --}}
                     
