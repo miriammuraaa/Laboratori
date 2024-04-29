@@ -1,72 +1,78 @@
-@extends ('layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Home')
 
 @section('content')
 
-<div class="row">
-    <div class="col-12">
-        <div>
-            <h2 class="text-black">CRUD de Productes</h2>
+<div class="container mt-5">
+    <div class="row justify-content-between align-items-center mb-4">
+        <div class="col-md-6">
+            <h2>Productes Laboratori</h2>
         </div>
-        <div>
-            <a href="{{ route('products.create') }}" class="btn btn-primary">Crear Producte</a>
-        </div>
+        @auth
+            @if (auth()->user()->admin) {{-- Verifica si el usuario logeado es admin --}}
+            <div>
+                <a href="{{ route('products.create') }}" class="btn btn-primary">Afegir Producte</a>
+            </div>
+            @endif
+        @endauth
     </div>
-    @if (Session::get('success'))
-    <div class="alert alert-success mt-2">
-        <strong>{{Session::get('success')}}</strong>
+    @if(Session::has('success'))
+    <div class="alert alert-success mb-4">
+        <strong>{{ Session::get('success') }}</strong>
     </div>
     @endif
-    <div class="col-12 mt-4">
-        <table class="table table-bordered text-white">
-            <tr class="text-secondary">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
                 <th>CAS</th>
                 <th>Concentració</th>
-                <th>Tipus Concentració</th>
+                <th>Tipus de Concentració</th>
                 <th>Estat</th>
                 <th>Capacitat</th>
-                <th>Caducitat</th>
+                <th>Data de Caducitat</th>
                 <th>Armari</th>
                 <th>Quantitat</th>
-            </tr>
-            @foreach ($products as $product )
-            <tr>
-                <td class="fw-bold">{{$product->cas}}</td>
-                <td>{{$product->concentracio}}</td>
-                <td>
-                    {{$product->tipus_concentracio}}
-                </td>
-                <td>
-                    {{$product->estat}}
-                </td>
-                
-                <td>
-                    {{$product->capacitat}}
-                </td>
-                <td>
-                    {{$product->caducitat}}
-                </td>
-                <td>
-                    {{$product->armari}}
-                </td>
-                <td>
-                    {{$product->quantitat}}
-                </td>
-                <td>
-                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Editar</a>
+                @auth
+                <th>Accions</th>
+                @endauth
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($products as $product)
+                <tr>
+                    <td class="fw-bold">{{ $product->cas }}</td>
+                    <td>{{ $product->concentracio }}</td>
+                    <td>{{ $product->tipus_concentracio }}</td>
+                    <td>{{ $product->estat }}</td>
+                    <td>{{ $product->capacitat }}</td>
+                    <td>{{ $product->caducitat }}</td>
+                    <td>{{ $product->armari }}</td>
+                    <td>{{ $product->quantitat }}</td>
+                    @auth
+                    <td>
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success">Retirar</a>
 
-                    <form action="{{route('products.destroy',$product)}}" method="post" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
+                        @if (auth()->user()->admin) {{-- Verifica si el usuario logeado es admin --}}
+                    
+                        <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning">Editar</a>
 
+                        <form action="{{route('products.destroy',$product)}}" method="post" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    @endif
+                    @endauth
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
         </table>
-        {{$products->links()}}
+    </div>
+    <div class="mt-4">
+        {{ $products->links() }}
     </div>
 </div>
 
